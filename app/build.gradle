@@ -1,0 +1,111 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'                 //Annotation processing을 지원하기 위해 추가
+
+
+android {
+    def configurations = rootProject.ext.configuration_version;
+
+    compileSdkVersion configurations.compileSdkVersion
+    buildToolsVersion configurations.buildToolsVersion
+    defaultConfig {
+        applicationId "prepare.byounghong.prepare"
+
+        minSdkVersion configurations.minSdkVersion
+        targetSdkVersion configurations.targetSdkVersion
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "dev"
+
+    productFlavors {
+
+        dev {
+            dimension "dev"
+
+            applicationId configurations.appID
+            testApplicationId "dev.test"
+            versionCode configurations.appVersionDev
+            versionName configurations.versionNameDev
+
+            buildConfigField 'boolean', 'IS_DEV', 'true'
+        }
+        staging {
+        }
+        product {
+
+        }
+    }
+
+    sourceSets {
+        dev {
+//            java.srcDirs = ['src/main/java', 'src/dev/java']
+//            res.srcDirs = ['src/main/res', 'src/dev/res']
+        }
+        op {
+        }
+    }
+
+    //daggar 파일 생성에 필요 설정
+    kapt {
+        generateStubs = true
+    }
+
+    defaultPublishConfig "devDebug"
+}
+
+
+
+dependencies {
+
+    def libraries = rootProject.ext.libraries;
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation libraries.support_appcompat
+    implementation libraries.constraint_layout
+    implementation libraries.kotlin_jre
+    implementation libraries.kotlin_reflect
+    implementation libraries.kotlin_stdlib
+    implementation libraries.kotlin_unwrap
+
+    //for Network
+    implementation libraries.http3
+    implementation libraries.http3_logging
+    implementation libraries.retrofit
+    implementation libraries.retrofit_adater
+    implementation libraries.retrofit_gson
+
+
+    //for Dagger
+    implementation libraries.dagger
+    kapt libraries.dagger_compiler
+    implementation libraries.support_annotation
+    implementation libraries.java_annotation
+
+    //for rx
+    implementation libraries.rxjava
+    implementation libraries.rxandroid
+    implementation libraries.rxbinding_support
+    implementation libraries.rxbinding_kotlin
+    implementation libraries.rxbinding_appcompat
+    implementation libraries.rxbinding_design
+    implementation libraries.rxbinding_recyclerview
+
+
+    //for image
+    implementation libraries.glide
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}

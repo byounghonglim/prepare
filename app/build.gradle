@@ -7,8 +7,8 @@ apply plugin: 'kotlin-kapt'                 //Annotation processing을 지원하
 android {
     def configurations = rootProject.ext.configuration_version;
 
-    compileSdkVersion configurations.compileSdkVersion
-    buildToolsVersion configurations.buildToolsVersion
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "prepare.byounghong.prepare"
 
@@ -65,32 +65,25 @@ android {
 
 
 dependencies {
-
-    def libraries = rootProject.ext.libraries;
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    def libraries = rootProject.ext.libraries
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation libraries.support_appcompat
     implementation libraries.constraint_layout
     implementation libraries.kotlin_jre
     implementation libraries.kotlin_reflect
     implementation libraries.kotlin_stdlib
     implementation libraries.kotlin_unwrap
-
     //for Network
     implementation libraries.http3
     implementation libraries.http3_logging
     implementation libraries.retrofit
     implementation libraries.retrofit_adater
     implementation libraries.retrofit_gson
-
-
     //for Dagger
     implementation libraries.dagger
     kapt libraries.dagger_compiler
     implementation libraries.support_annotation
     implementation libraries.java_annotation
-
     //for rx
     implementation libraries.rxjava
     implementation libraries.rxandroid
@@ -99,11 +92,8 @@ dependencies {
     implementation libraries.rxbinding_appcompat
     implementation libraries.rxbinding_design
     implementation libraries.rxbinding_recyclerview
-
-
     //for image
     implementation libraries.glide
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'

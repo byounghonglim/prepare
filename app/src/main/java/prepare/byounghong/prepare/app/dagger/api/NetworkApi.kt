@@ -1,6 +1,7 @@
 package prepare.byounghong.prepare.app.dagger.api
 
 import io.reactivex.Flowable
+import io.reactivex.Observable
 import prepare.byounghong.prepare.model.Photos
 import prepare.byounghong.prepare.model.Users
 import retrofit2.Response
@@ -17,7 +18,7 @@ interface NetworkApi {
     }
 
     @GET("users")
-    fun getUsers(): Flowable<Users>
+    fun getUsers(): Observable<Users>
 
     @GET("photos")
     fun getPhotos(

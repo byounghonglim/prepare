@@ -13,7 +13,9 @@ import prepare.byounghong.prepare.base.BaseActivity
 import prepare.byounghong.prepare.base.BaseFragment
 import prepare.byounghong.prepare.utils.browse
 import prepare.byounghong.prepare.utils.start
+import prepare.byounghong.prepare.view.count.CountActivity
 import prepare.byounghong.prepare.view.hello.HelloActivity
+import prepare.byounghong.prepare.view.progress.ProgressActivity
 
 /**
  * Created by byounghong on 2017. 10. 18..
@@ -29,10 +31,23 @@ class MainFragment : BaseFragment() {
 
         val btnHello = buttonHello.clicks()
                 .map{ HelloActivity::class }
-
-        btnHello
                 .subscribe{ start(it) }
                 .apply { disposables.add(this) }
+
+        val btnCount = buttonCounter.clicks()
+                .map{ CountActivity::class }
+                .subscribe{ start(it) }
+                .apply { disposables.add(this) }
+
+        val btnProgress = buttonProgress.clicks()
+                .map{ ProgressActivity::class }
+                .subscribe{ start(it) }
+                .apply { disposables.add(this) }
+//        btnHello
+//                .subscribe{ start(it) }
+//                .apply { disposables.add(this) }
+
+
 
     }
 

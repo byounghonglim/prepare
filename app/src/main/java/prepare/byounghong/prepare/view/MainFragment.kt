@@ -47,8 +47,6 @@ class MainFragment : BaseFragment() {
 //                .subscribe{ start(it) }
 //                .apply { disposables.add(this) }
 
-
-
     }
 
 

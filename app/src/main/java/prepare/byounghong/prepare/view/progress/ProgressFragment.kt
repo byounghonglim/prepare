@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.View
 import com.jakewharton.rxbinding2.view.clicks
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotlinx.android.synthetic.main.fagment_main.*
 import kotlinx.android.synthetic.main.fragment_progress.*
 import prepare.byounghong.prepare.R
-import prepare.byounghong.prepare.app.BaseApplication
-import prepare.byounghong.prepare.app.dagger.api.NetworkApi
+import prepare.byounghong.prepare.App
+import prepare.byounghong.prepare.network.NetworkApi
 import prepare.byounghong.prepare.base.BaseFragment
 import java.util.*
 import javax.inject.Inject
@@ -21,11 +20,11 @@ import javax.inject.Inject
 class ProgressFragment : BaseFragment() {
     override val layoutId: Int = R.layout.fragment_progress
 
-    @Inject lateinit var networkApi : NetworkApi
+    @Inject lateinit var networkModule: NetworkApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        BaseApplication.networkComponent.inject(this)
+        App.appComponent.inject(this)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -33,7 +32,7 @@ class ProgressFragment : BaseFragment() {
 
         buttonUser.clicks()
                 .doOnNext { progress.show()}
-                .switchMap { networkApi.getUsers()}
+                .switchMap { networkModule.getUsers()}
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ users ->
                     val index = Random().nextInt(users.size)

@@ -14,7 +14,6 @@ android {
 
         minSdkVersion configurations.minSdkVersion
         targetSdkVersion configurations.targetSdkVersion
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -76,14 +75,21 @@ dependencies {
     //for Network
     implementation libraries.http3
     implementation libraries.http3_logging
+    implementation libraries.http3_url_connect
     implementation libraries.retrofit
     implementation libraries.retrofit_adater
     implementation libraries.retrofit_gson
     //for Dagger
     implementation libraries.dagger
+//    annotationProcessor libraries.dagger_compiler
     kapt libraries.dagger_compiler
     implementation libraries.support_annotation
-    implementation libraries.java_annotation
+//    implementation libraries.java_annotation
+    implementation 'com.google.dagger:dagger-android:2.12'
+    implementation 'com.google.dagger:dagger-android-support:2.12'
+    kapt 'com.google.dagger:dagger-android-processor:2.12'
+//    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+
     //for rx
     implementation libraries.rxjava
     implementation libraries.rxandroid
@@ -94,8 +100,13 @@ dependencies {
     implementation libraries.rxbinding_recyclerview
     //for image
     implementation libraries.glide
+    kapt libraries.glide_compiler
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

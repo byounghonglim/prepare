@@ -15,15 +15,6 @@ import kotlin.reflect.KClass
  * Created by byounghong on 2017. 10. 12..
  */
 
-//class AppScheduler : Scheduler {
-
-
-//}
-
-//class AppScheduler : AndroidSchedulers {
-//
-//}
-
 fun AppCompatActivity.set(fragment: Fragment, container: Int = R.id.container) {
     fragmentManager
             .beginTransaction()

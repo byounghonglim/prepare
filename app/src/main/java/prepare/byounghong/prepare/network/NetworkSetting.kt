@@ -12,7 +12,7 @@ import retrofit2.http.Query
  * Created by byounghong on 2017. 10. 17..
  */
 
-interface NetworkApi {
+interface NetworkSetting {
 
     @GET("users")
     fun getUsers(): Observable<Users>

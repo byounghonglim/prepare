@@ -14,7 +14,17 @@ class PreferenceSetting(context: Context) : PreferenceCache(context, PreferenceC
     }
 
     fun isPushEnable() : Boolean? {
-//        return get(PreferenceConst.PUSH_ENABLE) as Boolean
+        return get(PreferenceConst.PUSH_ENABLE) as Boolean
         return null
     }
+
+    fun setGpsEnable(enable: Boolean) {
+        put(PreferenceConst.GPS_ENABLE, enable)
+    }
+
+    fun isGpsEnable() : Boolean? {
+        return get(PreferenceConst.GPS_ENABLE) as Boolean
+        return null
+    }
+
 }

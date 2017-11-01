@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
  */
 
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity()  {
 
     protected  val disposables by lazy { CompositeDisposable() }
 

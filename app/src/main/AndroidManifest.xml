@@ -3,7 +3,9 @@
     package="prepare.byounghong.prepare">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <meta-data android:name="com.leopold.android.riders.network.GlideConfiguration" android:value="GlideModule" />
     <meta-data android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"  />
@@ -16,16 +18,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.hello.HelloActivity"/>
-        <activity android:name=".view.count.CountActivity"/>
-        <activity android:name=".view.progress.ProgressActivity"/>
+        <!--<activity android:name=".view.hello.HelloActivity"/>-->
+        <!--<activity android:name=".view.count.CountActivity"/>-->
+        <!--<activity android:name=".view.progress.ProgressActivity"/>-->
 
     </application>
 

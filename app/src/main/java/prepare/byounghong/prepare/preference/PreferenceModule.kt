@@ -1,9 +1,10 @@
 package prepare.byounghong.prepare.preference
 
+import android.app.Application
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import prepare.byounghong.prepare.App
-import prepare.byounghong.prepare.preference.PreferenceSetting
 import javax.inject.Singleton
 
 /**
@@ -15,7 +16,7 @@ class PreferenceModule {
 
     @Singleton
     @Provides
-    fun provideSettingPreference(app : App) : PreferenceSetting {
+    fun provideSettingPreference(app : Context) : PreferenceSetting {
         return PreferenceSetting(app)
     }
 }

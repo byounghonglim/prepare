@@ -1,25 +1,42 @@
 package prepare.byounghong.prepare
 
+import android.app.Activity
 import android.app.Application
-import java.io.File
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import prepare.byounghong.prepare.network.NetworkModule
+import prepare.byounghong.prepare.network.NetworkSetting
+import prepare.byounghong.prepare.preference.PreferenceModule
+import prepare.byounghong.prepare.preference.PreferenceSetting
+import javax.inject.Inject
 
 /**
  * Created by byounghong on 2017. 10. 17..
  */
 
-class App : Application() {
+class App : Application(), HasActivityInjector {
 
-    //static method
-    companion object {
-        val appComponent: AppComponent by lazy {
-            DaggerAppComponent.create()
-        }
-        lateinit var neworkCacheDir: File
-    }
+    @Inject
+    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
+
+    @Inject
+    lateinit var preference : PreferenceSetting
+
+    @Inject
+    lateinit var network: NetworkSetting
+
+    val appComponent: AppComponent by lazy {
+          DaggerAppComponent.builder()
+                  .appModule(AppModule(this, this, cacheDir))
+                  .networkModule(NetworkModule())
+                  .preferenceModule(PreferenceModule())
+                  .build()}
 
     override fun onCreate() {
         super.onCreate()
-        neworkCacheDir = cacheDir
+        appComponent.inject(this)
     }
 
+    override fun activityInjector(): AndroidInjector<Activity> = dispatchingActivityInjector
 }

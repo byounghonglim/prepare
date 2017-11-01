@@ -6,8 +6,7 @@ import com.jakewharton.rxbinding2.view.clicks
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_progress.*
 import prepare.byounghong.prepare.R
-import prepare.byounghong.prepare.App
-import prepare.byounghong.prepare.network.NetworkApi
+import prepare.byounghong.prepare.network.NetworkSetting
 import prepare.byounghong.prepare.base.BaseFragment
 import java.util.*
 import javax.inject.Inject
@@ -19,12 +18,13 @@ import javax.inject.Inject
 
 class ProgressFragment : BaseFragment() {
     override val layoutId: Int = R.layout.fragment_progress
+    override val fragment = this
 
-    @Inject lateinit var networkModule: NetworkApi
+    @Inject lateinit var networkModule: NetworkSetting
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.appComponent.inject(this)
+//        App.appComponent.inject(this)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

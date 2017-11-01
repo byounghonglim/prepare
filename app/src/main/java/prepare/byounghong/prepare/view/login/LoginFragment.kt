@@ -11,6 +11,7 @@ import prepare.byounghong.prepare.base.BaseFragment
 
 class LoginFragment : BaseFragment() {
     override val layoutId: Int = R.layout.login_fragment
+    override val fragment = this
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
 

@@ -1,6 +1,7 @@
 package prepare.byounghong.prepare.view.count
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.View
 import com.jakewharton.rxbinding2.view.clicks
 import io.reactivex.Flowable
@@ -15,6 +16,7 @@ import prepare.byounghong.prepare.base.BaseFragment
 
 class CountFragment : BaseFragment() {
     override val layoutId: Int = R.layout.fragment_count
+    override val fragment = this
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         val inc = buttonInc.clicks().map { +1 }

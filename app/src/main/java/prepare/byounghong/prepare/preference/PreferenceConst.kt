@@ -10,5 +10,6 @@ class PreferenceConst {
     companion object {
         const val PREF_CACHE : String = "pref_setting"
         const val PUSH_ENABLE = "push_enable"
+        const val GPS_ENABLE = "gps_enable"
     }
 }

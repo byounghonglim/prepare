@@ -1,31 +1,36 @@
 package prepare.byounghong.prepare.base
 
-import android.app.Fragment
+import android.content.Context
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dagger.android.support.AndroidSupportInjection
 import io.reactivex.disposables.CompositeDisposable
+import prepare.byounghong.prepare.view.main.MainFragmentContract
 
 /**
  * Created by byounghong on 2017. 10. 17..
  */
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment() , MainFragmentContract.View{
+    protected  abstract val layoutId : Int
+    protected abstract val fragment : Fragment
 
     protected val disposables by lazy { CompositeDisposable() }
-    protected  abstract val layoutId : Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
-        retainInstance = true
+        retainInstance = true                       //화면 전환시 설정 유지
     }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        return inflater.inflate(layoutId, container, false)
-    }
+                              savedInstanceState: Bundle?)
+            = inflater.inflate(layoutId, container, false)
+
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         throw NotImplementedError()

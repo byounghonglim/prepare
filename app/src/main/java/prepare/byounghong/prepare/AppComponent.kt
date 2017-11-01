@@ -4,8 +4,9 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import prepare.byounghong.prepare.network.NetworkModule
 import prepare.byounghong.prepare.preference.PreferenceModule
-import prepare.byounghong.prepare.base.BaseFragment
-import prepare.byounghong.prepare.view.progress.ProgressFragment
+import prepare.byounghong.prepare.preference.PreferenceSetting
+import prepare.byounghong.prepare.scope.ApplicationScope
+import prepare.byounghong.prepare.view.main.MainActivity
 import javax.inject.Singleton
 
 /**
@@ -13,6 +14,7 @@ import javax.inject.Singleton
  */
 
 
+@ApplicationScope
 @Singleton
 @Component(modules = arrayOf(
         AndroidInjectionModule::class,
@@ -21,5 +23,5 @@ import javax.inject.Singleton
         NetworkModule::class))
 
 interface AppComponent{
-    fun inject(f: ProgressFragment)
+    fun inject(app: App)
 }

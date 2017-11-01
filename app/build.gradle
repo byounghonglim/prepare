@@ -2,15 +2,29 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'                 //Annotation processing을 지원하기 위해 추가
+apply plugin: 'io.fabric'
 
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
 
 android {
     def configurations = rootProject.ext.configuration_version;
 
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion configuration_version.compileSdkVersion
+    buildToolsVersion configuration_version.buildToolsVersion
+
     defaultConfig {
-        applicationId "prepare.byounghong.prepare"
+        applicationId configuration_version.appID
 
         minSdkVersion configurations.minSdkVersion
         targetSdkVersion configurations.targetSdkVersion
@@ -31,9 +45,9 @@ android {
             dimension "dev"
 
             applicationId configurations.appID
-            testApplicationId "dev.test"
             versionCode configurations.appVersionDev
             versionName configurations.versionNameDev
+            testApplicationId "dev.test"
 
             buildConfigField 'boolean', 'IS_DEV', 'true'
         }
@@ -72,6 +86,7 @@ dependencies {
     implementation libraries.kotlin_reflect
     implementation libraries.kotlin_stdlib
     implementation libraries.kotlin_unwrap
+
     //for Network
     implementation libraries.http3
     implementation libraries.http3_logging
@@ -79,16 +94,16 @@ dependencies {
     implementation libraries.retrofit
     implementation libraries.retrofit_adater
     implementation libraries.retrofit_gson
+
     //for Dagger
     implementation libraries.dagger
-//    annotationProcessor libraries.dagger_compiler
     kapt libraries.dagger_compiler
     implementation libraries.support_annotation
-//    implementation libraries.java_annotation
-    implementation 'com.google.dagger:dagger-android:2.12'
-    implementation 'com.google.dagger:dagger-android-support:2.12'
-    kapt 'com.google.dagger:dagger-android-processor:2.12'
-//    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+
+    //for Dagger with Android
+    implementation libraries.dagger_android
+    implementation libraries.dagger_android_sup
+    kapt libraries.dagger_android_pro
 
     //for rx
     implementation libraries.rxjava
@@ -98,17 +113,24 @@ dependencies {
     implementation libraries.rxbinding_appcompat
     implementation libraries.rxbinding_design
     implementation libraries.rxbinding_recyclerview
+
     //for image
     implementation libraries.glide
     kapt libraries.glide_compiler
+
+    //for permission
+    implementation libraries.tedpermission
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 //    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-
-    implementation 'gun0912.ted:tedpermission-rx2:2.0.3'
+    //for fabric
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true;
+    }
 
 }
 repositories {

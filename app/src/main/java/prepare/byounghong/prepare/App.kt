@@ -2,9 +2,11 @@ package prepare.byounghong.prepare
 
 import android.app.Activity
 import android.app.Application
+import com.crashlytics.android.Crashlytics
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import io.fabric.sdk.android.Fabric
 import prepare.byounghong.prepare.network.NetworkModule
 import prepare.byounghong.prepare.network.NetworkSetting
 import prepare.byounghong.prepare.preference.PreferenceModule
@@ -36,6 +38,9 @@ class App : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
         appComponent.inject(this)
+
+        Fabric.with(this, Crashlytics())
+
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = dispatchingActivityInjector

@@ -28,7 +28,9 @@
         <!--<activity android:name=".view.hello.HelloActivity"/>-->
         <!--<activity android:name=".view.count.CountActivity"/>-->
         <!--<activity android:name=".view.progress.ProgressActivity"/>-->
-
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="8997f5c76929c178777346e4bfbfb6184b497d64" />
     </application>
 
 </manifest>

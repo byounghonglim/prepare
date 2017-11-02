@@ -6,6 +6,7 @@ import com.crashlytics.android.Crashlytics
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import hugo.weaving.DebugLog
 import io.fabric.sdk.android.Fabric
 import prepare.byounghong.prepare.network.NetworkModule
 import prepare.byounghong.prepare.network.NetworkSetting
@@ -17,6 +18,7 @@ import javax.inject.Inject
  * Created by byounghong on 2017. 10. 17..
  */
 
+@DebugLog
 class App : Application(), HasActivityInjector {
 
     @Inject

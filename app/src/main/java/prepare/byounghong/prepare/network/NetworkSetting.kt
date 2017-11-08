@@ -19,7 +19,7 @@ interface NetworkSetting {
 
     @GET("photos")
     fun getPhotos(
-            @Query("_page") page:Int = 1,
-            @Query("_limit") limit:Int = 30
+            @Query("_id") id:Int = 1,
+            @Query("_url") url:String = ""
     ) : Flowable<Response<Photos>>
 }

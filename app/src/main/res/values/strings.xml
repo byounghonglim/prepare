@@ -15,7 +15,7 @@
     <string name="github">Fork me on Github</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
-    <string name="click_me">Click me!</string>
+    <string name="click_me">Button</string>
     <string name="smooth">Smooth</string>
     <string name="hello_message">Hello, %1$s!</string>
 </resources>

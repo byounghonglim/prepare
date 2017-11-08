@@ -1,10 +1,8 @@
 package prepare.byounghong.prepare.preference
 
-import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import prepare.byounghong.prepare.App
 import javax.inject.Singleton
 
 /**

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.fernandocejas.frodo:frodo-runtime-0.8.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/frodo-runtime-0.8.3.aar/88ef87fdaa669dce0ed852a13a7202fb/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/frodo-runtime-0.8.3.aar/88ef87fdaa669dce0ed852a13a7202fb/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fernandocejas.frodo/frodo-runtime/0.8.3/8489f71c4061ef7e82694cf98d5ccfdf68680381/frodo-runtime-0.8.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

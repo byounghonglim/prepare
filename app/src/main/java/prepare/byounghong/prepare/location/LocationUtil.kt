@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
 import android.provider.Settings
 import android.widget.Toast
 import com.tedpark.tedpermission.rx2.TedRx2Permission
@@ -21,23 +20,23 @@ fun isGpsOn(@NotNull context: Activity) =
 
 
 fun setGpsSetting(@NotNull context: Activity) =
-    AlertDialog.Builder(context)
-            .setIcon(android.R.drawable.ic_dialog_alert)
-            .setTitle("")
-            .setMessage("")
-            .setCancelable(false)
-            .setPositiveButton("OK") { dialog, which ->
-                context.startActivityForResult(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),0)
-            }
-            .show()
+        AlertDialog.Builder(context)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("")
+                .setMessage("")
+                .setCancelable(false)
+                .setPositiveButton("OK") { dialog, which ->
+                    context.startActivityForResult(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),0)
+                }
+                .show()
 
 fun turnOnGps(@NotNull context: Activity) =
-    context.sendBroadcast(Intent("android.location.GPS_ENABLED_CHANGE")
-            .putExtra("enabled",true))
+        context.sendBroadcast(Intent("android.location.GPS_ENABLED_CHANGE")
+                .putExtra("enabled",true))
 
 
 fun setLocationPermission(@NotNull preferenceSetting: PreferenceSetting
-                           , @NotNull context:Activity) {
+                          , @NotNull context:Activity) {
 
     TedRx2Permission.with(context)
             .setRationaleTitle("")
